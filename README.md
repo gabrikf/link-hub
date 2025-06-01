@@ -31,7 +31,6 @@ This is a responsive, minimalistic personal link hub (similar to Linktree) where
 ### Frontend
 
 ````bash
-```bash
 cd web
 cp .env.example .env  # Fill in Firebase credentials
 npm install
