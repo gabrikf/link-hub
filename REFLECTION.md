@@ -15,6 +15,7 @@ Given more time, I would improve:
 - Analytics per link (click count)
 - Ability to group or categorize links
 - Better error handling and loading states
+- Implement zod validation on back-end
 
 Overall, AI helped accelerate some tasks, but the success of the project depended on manual design, problem-solving, and polish.
 ```
