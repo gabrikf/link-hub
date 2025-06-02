@@ -45,3 +45,10 @@ cp .env.example .env  # Fill in Firebase credentials
 npm install
 npm run dev
 ```
+
+## Backend test
+
+```bash
+cd server
+npm run test
+```
