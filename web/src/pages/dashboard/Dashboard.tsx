@@ -14,6 +14,7 @@ import { useState } from "react";
 import { Dialog, DialogTrigger } from "../../components/ui/dialog";
 import { Button } from "../../components/ui/button";
 import { MdLogout } from "react-icons/md";
+import { Profile } from "./Profile";
 
 export interface LinkType {
   id: string;
@@ -127,6 +128,8 @@ export function Dashboard() {
           />
         </div>
       </div>
+
+      <Profile />
 
       <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext

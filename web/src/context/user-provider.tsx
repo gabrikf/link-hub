@@ -1,7 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../services/firebase";
-import { UserContext, type UserWithToken } from "./user-context";
+import { UserContext, type User, type UserWithToken } from "./user-context";
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<UserWithToken | null>(null);
@@ -14,6 +14,17 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     navigate("/login");
   };
 
+  const updateUser = (userData: Partial<User>) => {
+    const newUser = {
+      ...user,
+      user: { ...user?.user, ...userData },
+    } as UserWithToken;
+    if (newUser) {
+      setUser(newUser);
+    }
+    localStorage.setItem("user", JSON.stringify(newUser));
+  };
+
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -23,7 +34,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, setUser, logout }}>
+    <UserContext.Provider value={{ user, setUser, logout, updateUser }}>
       {children}
     </UserContext.Provider>
   );

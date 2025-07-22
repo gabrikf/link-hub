@@ -8,11 +8,15 @@ generator client {
 }
 
 model User {
-  id       String  @id @default(cuid())
-  username String  @unique
-  email    String  @unique
-  imgUrl   String?
-  links    Link[]
+  id          String   @id @default(cuid())
+  username    String   @unique
+  name        String?
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  email       String   @unique
+  imgUrl      String?
+  links       Link[]
 }
 
 model Link {
@@ -24,4 +28,5 @@ model Link {
   isPublic  Boolean  @default(true)
   order     Int?     @default(0)
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

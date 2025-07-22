@@ -8,7 +8,7 @@ export default async function authRoutes(app: FastifyInstance) {
     const { idToken } = req.body as { idToken: string };
     try {
       const decoded = await firebaseAdmin.auth().verifyIdToken(idToken);
-      const { email, picture } = decoded;
+      const { email, picture, name } = decoded;
 
       let user = await prisma.user.findUnique({ where: { email } });
 
@@ -21,6 +21,7 @@ export default async function authRoutes(app: FastifyInstance) {
           data: {
             id: decoded.id,
             email,
+            name: name,
             username: email.split("@")[0],
             imgUrl: picture,
           },
